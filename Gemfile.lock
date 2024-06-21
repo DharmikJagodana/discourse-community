@@ -631,7 +631,7 @@ DEPENDENCIES
   email_reply_trimmer
   excon
   execjs
-  extralite-bundle (~> 2.8)
+  extralite-bundle
   fabrication
   faker (~> 2.16)
   fakeweb
@@ -665,7 +665,6 @@ DEPENDENCIES
   mini_suffix
   minio_runner
   mocha
-  msgpack (~> 1.7)
   multi_json
   mustache
   mutex_m
@@ -714,6 +713,7 @@ DEPENDENCIES
   rtlcss
   rubocop-discourse
   ruby-prof
+  ruby-progressbar
   ruby-readability
   rubyzip
   sanitize
@@ -732,7 +732,7 @@ DEPENDENCIES
   syntax_tree-disable_ternary
   test-prof
   thor
-  trilogy (~> 2.8)
+  trilogy
   tzinfo-data
   uglifier
   unf
@@ -741,7 +741,7 @@ DEPENDENCIES
   webmock
   yaml-lint
   yard
-  zeitwerk (~> 2.6)
+  zeitwerk
 
 BUNDLED WITH
    2.5.9
