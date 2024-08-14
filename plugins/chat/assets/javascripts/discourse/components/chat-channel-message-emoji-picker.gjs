@@ -45,7 +45,7 @@ export default class ChatChannelMessageEmojiPicker extends Component {
       this.chatEmojiPickerManager.picker?.trigger,
       element,
       {
-        placement: "top-end",
+        placement: "top",
         modifiers: [
           {
             name: "flip",
