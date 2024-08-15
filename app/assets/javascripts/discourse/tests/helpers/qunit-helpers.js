@@ -87,10 +87,6 @@ import {
   currentSettings,
   mergeSettings,
 } from "discourse/tests/helpers/site-settings";
-import {
-  clearExtraHeaderButtons,
-  clearExtraHeaderIcons,
-} from "discourse/widgets/header";
 import { resetDecorators as resetPostCookedDecorators } from "discourse/widgets/post-cooked";
 import { resetPostMenuExtraButtons } from "discourse/widgets/post-menu";
 import { resetDecorators } from "discourse/widgets/widget";
@@ -234,8 +230,6 @@ export function testCleanup(container, app) {
   resetSidebarPanels();
   clearExtraGlimmerHeaderIcons();
   clearExtraGlimmerHeaderButtons();
-  clearExtraHeaderIcons();
-  clearExtraHeaderButtons();
   resetOnKeyUpCallbacks();
   resetLogSearchLinkClickedCallbacks();
   resetItemSelectCallbacks();
