@@ -1,5 +1,6 @@
 import Component from "@glimmer/component";
 import { hash } from "@ember/helper";
+import { service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
 import AboutPageUsers from "discourse/components/about-page-users";
 import PluginOutlet from "discourse/components/plugin-outlet";
@@ -10,6 +11,8 @@ import escape from "discourse-common/lib/escape";
 import I18n from "discourse-i18n";
 
 export default class AboutPage extends Component {
+  @service siteSettings;
+
   get moderatorsCount() {
     return this.args.model.moderators.length;
   }
@@ -57,7 +60,7 @@ export default class AboutPage extends Component {
   }
 
   get siteActivities() {
-    return [
+    const list = [
       {
         icon: "scroll",
         class: "topics",
@@ -104,6 +107,22 @@ export default class AboutPage extends Component {
         period: I18n.t("about.activities.periods.all_time"),
       },
     ];
+
+    if (this.siteSettings.display_eu_visitor_stats) {
+      list.splice(2, 0, {
+        icon: "user-secret",
+        class: "visitors",
+        activityText: I18n.messageFormat("about.activities.visitors_MF", {
+          total_count: this.args.model.stats.visitors_7_days,
+          eu_count: this.args.model.stats.eu_visitors_7_days,
+          total_formatted_number: number(this.args.model.stats.visitors_7_days),
+          eu_formatted_number: number(this.args.model.stats.eu_visitors_7_days),
+        }),
+        period: I18n.t("about.activities.periods.last_7_days"),
+      });
+    }
+
+    return list;
   }
 
   get contactInfo() {

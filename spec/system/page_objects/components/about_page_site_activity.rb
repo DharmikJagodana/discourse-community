@@ -23,6 +23,13 @@ module PageObjects
         )
       end
 
+      def visitors
+        AboutPageSiteActivityItem.new(
+          container.find(".about__activities-item.visitors"),
+          translation_key: nil,
+        )
+      end
+
       def active_users
         AboutPageSiteActivityItem.new(
           container.find(".about__activities-item.active-users"),
@@ -42,6 +49,14 @@ module PageObjects
           container.find(".about__activities-item.likes"),
           translation_key: "about.activities.likes",
         )
+      end
+
+      def has_activity_item?(name)
+        container.has_css?(".about__activities-item.#{name}")
+      end
+
+      def has_no_activity_item?(name)
+        container.has_no_css?(".about__activities-item.#{name}")
       end
     end
   end
