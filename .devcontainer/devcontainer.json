@@ -1,16 +1,18 @@
 {
   "name": "Discourse",
-  "image": "discourse/discourse_dev:release",
-  "workspaceMount": "source=${localWorkspaceFolder}/../..,target=/var/www/discourse,type=bind",
+  "image": "docker.io/discourse/discourse_dev:release-20240816-1703",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/var/www/discourse,type=bind",
   "workspaceFolder": "/var/www/discourse",
-  "settings": {
-    "search.followSymlinks": false
-  },
-  "postStartCommand": "sudo /sbin/boot",
-  "extensions": ["rebornix.Ruby"],
-  "forwardPorts": [9292],
+  "postStartCommand": "sudo chown discourse node_modules && nohup sudo bash -c '/sbin/boot &'",
+  "forwardPorts": [9292, 4200, 3000],
   "remoteUser": "discourse",
   "remoteEnv": {
     "DISCOURSE_DEV_HOSTS": ".githubpreview.dev"
-  }
+  },
+  "mounts": [
+    "source=${localWorkspaceFolderBasename}-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume",
+    "source=${localWorkspaceFolderBasename}-bundle,target=${containerWorkspaceFolder}/vendor/bundle,type=volume",
+    "source=${localWorkspaceFolderBasename}-pg,target=/shared/postgres_data,type=volume",
+    "source=${localWorkspaceFolderBasename}-redis,target=/shared/redis,type=volume"
+  ]
 }
